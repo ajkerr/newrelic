@@ -24,16 +24,22 @@ action :install do
 end
 
 action :remove do
-  execute 'npm-uninstall-nodejs_agent' do
+  bash 'npm-uninstall-nodejs_agent' do
     cwd new_resource.app_path
-    command 'npm uninstall newrelic'
+    code <<-EOH
+      source /etc/profile.d/nvm.sh
+      npm uninstall newrelic
+    EOH
   end
 end
 
 def install_nodejs_agent
-  execute 'npm-install-nodejs_agent' do
+  bash 'npm-install-nodejs_agent' do
     cwd new_resource.app_path
-    command 'npm install newrelic'
+    code <<-EOH
+      source /etc/profile.d/nvm.sh
+      npm install newrelic
+    EOH
   end
 
   template "#{new_resource.app_path}/newrelic.js" do
