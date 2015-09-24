@@ -53,7 +53,7 @@ end
 
 def npm_installed?
   # check if npm is installed
-  cmd = Mixlib::ShellOut.new('which npm')
+  cmd = Mixlib::ShellOut.new('source /etc/profile.d/nvm.sh && which npm')
   cmd.run_command
 
   return true unless cmd.error?
