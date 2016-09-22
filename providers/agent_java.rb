@@ -47,7 +47,7 @@ def agent_jar
     jar_file = url_content.split(/\W+jar/).first.to_s.split('\\"').last + '.jar'
   else
     version = new_resource.version
-    jar_file = 'newrelic-agent-#{version}.jar'
+    jar_file = "newrelic-agent-#{version}.jar"
   end
 
   agent_jar = "#{new_resource.install_dir}/newrelic/newrelic.jar"
